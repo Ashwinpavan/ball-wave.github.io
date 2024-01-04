@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Border-Gradient Animation</title>
+</head>
+
+<body>
+    <div class="gradient-boreder" id="box">
+        Animation <br> gradient-boreder <br> ok
+        <!-- class and id selectors are used because both selectors used for diff styleing  -->
+    </div>
+
+</body>
+<style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        font-size: 50px;
+        font-family: sans-serif;
+        background-color: gray;
+
+    }
+
+    #box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 400px;
+        height: 200px;
+        color: whitesmoke;
+        font-size: 3.3rem;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+    }
+
+    .gradient-boreder {
+        --borderWidth: 25px;
+        /* --border-width:50px; this is not an Property ,this is an variable as been declared */
+        background-color: black;
+        position: relative;
+        border-radius: var(--borderWidth);
+        /* dont give the border-radius value because,
+        already given the value variable  --border-width:5px ,
+        assing this variable to  border-radius: var(--border-width) by default it take 5px only */
+    }
+
+    .gradient-boreder:after {
+        content: "";
+        position: absolute;
+        top: calc(-1 * var(--borderWidth));
+        /* In css calc() function which perform  some kind of calculations  */
+        /* -1 * var(--borderWidth) value is 5px ,then -1 * 5px = -5px  */
+        left: calc(-1 * var(--borderWidth));
+        /* -1 * var(--borderWidth) value is 5px ,then -1 * 5px = -5px  */
+        width: calc(100% + var(--borderWidth) * 2);
+        /* 100% + 5px* 2 = 100% + 10px =110px   */
+        height: calc(100% + var(--borderWidth) * 2);
+        /* 100% + 5px* 2 = 100% + 10px =110px   */
+        background: linear-gradient(60deg,whitesmoke,red,pink,purple,orange,grey,black,white,gray);
+        border-radius: calc(2 * var(--borderWidth));
+        /* 2px * 5px = 10px */
+        z-index: -1;
+        /* over lapping should not take place and also disturping any another text*/
+        animation: ashwin 2s ease 1s infinite alternate;
+        /* this animation is shotcut every function avaliable in signle line  */
+        background-size: 300% 300%;
+        /* x-axis = 300% and y-axis=300% */ 
+    }
+
+    @keyframes ashwin{
+        0%{background-position: 0% 50%;}
+        50%{background-position: 100% 50%;}
+        100%{background-position: 0% 50%; }
+    }
+</style>
+
+</html>
